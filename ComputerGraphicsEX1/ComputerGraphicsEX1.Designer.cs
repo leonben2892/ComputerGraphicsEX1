@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             this.canvas = new System.Windows.Forms.Panel();
-            this.DrawLine = new System.Windows.Forms.Button();
-            this.BazierCurve = new System.Windows.Forms.Button();
-            this.DrawCircle = new System.Windows.Forms.Button();
+            this.LineBtn = new System.Windows.Forms.Button();
+            this.BazierCurveBtn = new System.Windows.Forms.Button();
+            this.CircleBtn = new System.Windows.Forms.Button();
             this.canvas.SuspendLayout();
             this.SuspendLayout();
             // 
             // canvas
             // 
             this.canvas.BackColor = System.Drawing.SystemColors.Window;
-            this.canvas.Controls.Add(this.DrawLine);
-            this.canvas.Controls.Add(this.BazierCurve);
-            this.canvas.Controls.Add(this.DrawCircle);
+            this.canvas.Controls.Add(this.LineBtn);
+            this.canvas.Controls.Add(this.BazierCurveBtn);
+            this.canvas.Controls.Add(this.CircleBtn);
             this.canvas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.canvas.Location = new System.Drawing.Point(0, 0);
             this.canvas.Name = "canvas";
@@ -49,35 +49,35 @@
             this.canvas.Paint += new System.Windows.Forms.PaintEventHandler(this.canvas_Paint);
             this.canvas.MouseClick += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseClick);
             // 
-            // DrawLine
+            // LineBtn
             // 
-            this.DrawLine.Location = new System.Drawing.Point(60, 12);
-            this.DrawLine.Name = "DrawLine";
-            this.DrawLine.Size = new System.Drawing.Size(75, 23);
-            this.DrawLine.TabIndex = 3;
-            this.DrawLine.Text = "Draw Line";
-            this.DrawLine.UseVisualStyleBackColor = true;
-            this.DrawLine.Click += new System.EventHandler(this.DrawLine_Click);
+            this.LineBtn.Location = new System.Drawing.Point(60, 12);
+            this.LineBtn.Name = "LineBtn";
+            this.LineBtn.Size = new System.Drawing.Size(75, 23);
+            this.LineBtn.TabIndex = 3;
+            this.LineBtn.Text = "Draw Line";
+            this.LineBtn.UseVisualStyleBackColor = true;
+            this.LineBtn.Click += new System.EventHandler(this.LineBtn_Click);
             // 
-            // BazierCurve
+            // BazierCurveBtn
             // 
-            this.BazierCurve.Location = new System.Drawing.Point(427, 12);
-            this.BazierCurve.Name = "BazierCurve";
-            this.BazierCurve.Size = new System.Drawing.Size(75, 23);
-            this.BazierCurve.TabIndex = 2;
-            this.BazierCurve.Text = "Bazier Curve";
-            this.BazierCurve.UseVisualStyleBackColor = true;
-            this.BazierCurve.Click += new System.EventHandler(this.BazierCurve_Click);
+            this.BazierCurveBtn.Location = new System.Drawing.Point(427, 12);
+            this.BazierCurveBtn.Name = "BazierCurveBtn";
+            this.BazierCurveBtn.Size = new System.Drawing.Size(75, 23);
+            this.BazierCurveBtn.TabIndex = 2;
+            this.BazierCurveBtn.Text = "Bazier Curve";
+            this.BazierCurveBtn.UseVisualStyleBackColor = true;
+            this.BazierCurveBtn.Click += new System.EventHandler(this.BazierCurveBtn_Click);
             // 
-            // DrawCircle
+            // CircleBtn
             // 
-            this.DrawCircle.Location = new System.Drawing.Point(247, 12);
-            this.DrawCircle.Name = "DrawCircle";
-            this.DrawCircle.Size = new System.Drawing.Size(75, 23);
-            this.DrawCircle.TabIndex = 1;
-            this.DrawCircle.Text = "Draw Circle";
-            this.DrawCircle.UseVisualStyleBackColor = true;
-            this.DrawCircle.Click += new System.EventHandler(this.DrawCircle_Click);
+            this.CircleBtn.Location = new System.Drawing.Point(247, 12);
+            this.CircleBtn.Name = "CircleBtn";
+            this.CircleBtn.Size = new System.Drawing.Size(75, 23);
+            this.CircleBtn.TabIndex = 1;
+            this.CircleBtn.Text = "Draw Circle";
+            this.CircleBtn.UseVisualStyleBackColor = true;
+            this.CircleBtn.Click += new System.EventHandler(this.CircleBtn_Click);
             // 
             // ComputerGraphicsEX1
             // 
@@ -96,9 +96,9 @@
         #endregion
 
         private System.Windows.Forms.Panel canvas;
-        private System.Windows.Forms.Button BazierCurve;
-        private System.Windows.Forms.Button DrawCircle;
-        private System.Windows.Forms.Button DrawLine;
+        private System.Windows.Forms.Button BazierCurveBtn;
+        private System.Windows.Forms.Button CircleBtn;
+        private System.Windows.Forms.Button LineBtn;
     }
 }
 
