@@ -12,7 +12,10 @@ namespace ComputerGraphicsEX1
 {
     public partial class ComputerGraphicsEX1 : Form
     {
-        Bitmap bitmapImage;     
+        Bitmap bitmapImage;
+
+        //Drawing color
+        Color color;
 
         //Mouse click points
         Point firstPoint, secondPoint;
@@ -32,9 +35,8 @@ namespace ComputerGraphicsEX1
         void Init()
         {
             bitmapImage = new Bitmap(canvas.Width, canvas.Height);
-
+            color = Color.Black;     
             IsPoint1Available = IsPoint2Available = false;
-
             IsDrawingLine = true;
             IsDrawingCircle = false;
             IsDrawingBazierCurve = false;
@@ -75,8 +77,10 @@ namespace ComputerGraphicsEX1
                 secondPoint.Y = e.Y;
 
                 IsPoint2Available = true;
-                if(IsDrawingLine == true)
+                if (IsDrawingLine == true)
                     DrawLine(firstPoint, secondPoint);
+                else if (IsDrawingCircle == true)
+                    DrawCircle(firstPoint, secondPoint);
 
                 IsPoint1Available = false;
                 IsPoint2Available = false;
@@ -87,9 +91,9 @@ namespace ComputerGraphicsEX1
 
         private void DrawLine(Point source, Point target)
         {
-            //Calculating delta Y & delta X
-            int deltaY = Math.Abs(target.Y - source.Y);
+            //Calculating delta X & delta Y
             int deltaX = Math.Abs(target.X - source.X);
+            int deltaY = Math.Abs(target.Y - source.Y);
 
             //Calculate Error
             double err = (deltaY/ deltaX) - 0.5;
@@ -101,7 +105,7 @@ namespace ComputerGraphicsEX1
             //Draw line points
             for (int x = source.X, y = source.Y; x <= target.X; x++)
             {
-                bitmapImage.SetPixel(x, y, Color.Red);
+                bitmapImage.SetPixel(x, y, color);
                 if(errp >= 0)
                 {
                     y++;
@@ -110,6 +114,71 @@ namespace ComputerGraphicsEX1
 
                 errp += 2 * deltaY;
             }
+        }
+
+        private void DrawCirclePoints(Point center, int x, int y)
+        {
+            bitmapImage.SetPixel(center.X + x, center.Y + y, color);
+            bitmapImage.SetPixel(center.X - x, center.Y + y, color);
+            bitmapImage.SetPixel(center.X + x, center.Y - y, color);
+            bitmapImage.SetPixel(center.X - x, center.Y - y, color);
+            bitmapImage.SetPixel(center.X + y, center.Y + x, color);
+            bitmapImage.SetPixel(center.X - y, center.Y + x, color);
+            bitmapImage.SetPixel(center.X + y, center.Y - x, color);
+            bitmapImage.SetPixel(center.X - y, center.Y - x, color);
+        }
+
+        private void DrawCircle(Point center, Point targetRadius)
+        {
+            //Calculating delta X & delta Y
+            int deltaX = Math.Abs(targetRadius.X - center.X);
+            int deltaY = Math.Abs(targetRadius.Y - center.Y);
+
+            int radius = Convert.ToInt32(Math.Sqrt(Math.Pow(deltaX, 2) + Math.Pow(deltaY, 2)));
+            int x = 0;
+            int y = radius;
+            int p = 3 - 2 * radius;
+            while(x < y)
+            {
+                DrawCirclePoints(center, x, y);
+                if (p < 0)
+                    p += 4 * x + 6;
+                else
+                {
+                    p += 4 * (x - y) + 10;
+                    y--;
+                }
+                x++;
+            }
+
+            if(x == y)
+                DrawCirclePoints(center, x, y);
+        }
+
+        /* Change drawing color functions */
+        private void BlueBtn_Click(object sender, EventArgs e)
+        {
+            color = Color.Blue;
+        }
+
+        private void RedBtn_Click(object sender, EventArgs e)
+        {
+            color = Color.Red;
+        }
+
+        private void GreenBtn_Click(object sender, EventArgs e)
+        {
+            color = Color.Lime;
+        }
+
+        private void YellowBtn_Click(object sender, EventArgs e)
+        {
+            color = Color.Yellow;
+        }
+
+        private void BlackBtn_Click(object sender, EventArgs e)
+        {
+            color = Color.Black;
         }
 
         private void canvas_Paint(object sender, PaintEventArgs e)
