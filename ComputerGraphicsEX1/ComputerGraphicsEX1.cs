@@ -173,8 +173,13 @@ namespace ComputerGraphicsEX1
             int absDeltaY = Math.Abs(deltaY);
 
             //Calculate error for both axis in order to be able to draw lines with horizontal & vertical slope
-            int errpX = 2 * absDeltaY - absDeltaX;
-            int errpY = 2 * absDeltaX - absDeltaY;
+            int err = Convert.ToInt32(absDeltaY / absDeltaX - 0.5);
+            err += absDeltaY / absDeltaX;
+            int errpX = 2 * absDeltaX * err;
+
+            err = Convert.ToInt32(absDeltaX / absDeltaY - 0.5);
+            err += absDeltaX / absDeltaY;
+            int errpY = 2 * absDeltaY * err;
 
             //Bigger slope on X axis
             if (absDeltaX > absDeltaY)
