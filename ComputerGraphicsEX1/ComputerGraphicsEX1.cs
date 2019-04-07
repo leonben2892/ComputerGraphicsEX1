@@ -42,27 +42,6 @@ namespace ComputerGraphicsEX1
             IsDrawingBazierCurve = false;
         }
 
-        private void LineBtn_Click(object sender, EventArgs e)
-        {
-            IsDrawingLine = true;
-            IsDrawingCircle = false;
-            IsDrawingBazierCurve = false;
-        }
-
-        private void CircleBtn_Click(object sender, EventArgs e)
-        {
-            IsDrawingLine = false;
-            IsDrawingCircle = true;
-            IsDrawingBazierCurve = false;
-        }
-
-        private void BazierCurveBtn_Click(object sender, EventArgs e)
-        {
-            IsDrawingLine = false;
-            IsDrawingCircle = false;
-            IsDrawingBazierCurve = true;
-        }
-
         private void canvas_MouseClick(object sender, MouseEventArgs e)
         {
             if(IsPoint1Available == false)
@@ -101,30 +80,32 @@ namespace ComputerGraphicsEX1
                 fourthPoint.X = e.X;
                 fourthPoint.Y = e.Y;
                 IsPoint4Available = true;
+
+                DrawBazierCurve(firstPoint, secondPoint, thirdPoint, fourthPoint);
+
+                IsPoint1Available = false;
+                IsPoint2Available = false;
+                IsPoint3Available = false;
+                IsPoint4Available = false;
+
             }
             Refresh();
         }
 
-        private void DrawLineHorizontalSlope(int x, int y, int deltaX, int deltaY, int absDeltaX, int absDeltaY, int endX,int errpX)
+        private void DrawLineHorizontalSlope(int x, int y, int deltaX, int deltaY, int absDeltaX, int absDeltaY, int endX, int errpX)
         {
             // Calculate & draw line points
             for (int i = 0; x < endX; i++)
             {
                 x = x + 1;
                 if (errpX < 0)
-                {
                     errpX += 2 * absDeltaY;
-                }
                 else
                 {
                     if ((deltaX < 0 && deltaY < 0) || (deltaX > 0 && deltaY > 0))
-                    {
                         y = y + 1;
-                    }
                     else
-                    {
                         y = y - 1;
-                    }
                     errpX += 2 * (absDeltaY - absDeltaX);
                 }
                 // Draw pixel at (x,y) point
@@ -139,19 +120,13 @@ namespace ComputerGraphicsEX1
             {
                 y = y + 1;
                 if (errpY < 0)
-                {
                     errpY += 2 * absDeltaX;
-                }
                 else
                 {
                     if ((deltaX < 0 && deltaY < 0) || (deltaX > 0 && deltaY > 0))
-                    {
                         x = x + 1;
-                    }
                     else
-                    {
                         x = x - 1;
-                    }
                     errpY += 2 * (absDeltaX - absDeltaY);
                 }
                 // Draw pixel at (x,y) point
@@ -173,13 +148,8 @@ namespace ComputerGraphicsEX1
             int absDeltaY = Math.Abs(deltaY);
 
             //Calculate error for both axis in order to be able to draw lines with horizontal & vertical slope
-            int err = Convert.ToInt32(absDeltaY / absDeltaX - 0.5);
-            err += absDeltaY / absDeltaX;
-            int errpX = 2 * absDeltaX * err;
-
-            err = Convert.ToInt32(absDeltaX / absDeltaY - 0.5);
-            err += absDeltaX / absDeltaY;
-            int errpY = 2 * absDeltaY * err;
+            int errpX = 2 * absDeltaY - absDeltaX;
+            int errpY = 2 * absDeltaX - absDeltaY;
 
             //Bigger slope on X axis
             if (absDeltaX > absDeltaY)
@@ -264,31 +234,52 @@ namespace ComputerGraphicsEX1
                 DrawCirclePoints(center, x, y);
         }
 
+        private void DrawBazierCurve(Point one, Point two, Point three, Point four)
+        {
+            //Current calculated point
+            double currentX, currentY;
+
+            //Current base point
+            Point basePoint = new Point(one.X, one.Y);
+
+            //Next Point
+            Point nextPoint = new Point();
+
+            //Calculating a,b,c,d parameters for X
+            int aX = -one.X + 3 * two.X - 3 * three.X + four.X;
+            int bX = 3 * one.X - 6 * two.X + 3 * three.X;
+            int cX = -3 * one.X + 3 * two.X;
+            int dX = one.X;
+
+            //Calculating a,b,c,d parameters for Y
+            int aY = -one.Y + 3 * two.Y - 3 * three.Y + four.Y;
+            int bY = 3 * one.Y - 6 * two.Y + 3 * three.Y;
+            int cY = -3 * one.Y + 3 * two.Y;
+            int dY = one.Y;
+
+            for (double t = 0; t <= 1; t += (double)1/10)
+            {
+                currentX = aX * Math.Pow(t, 3) + bX * Math.Pow(t, 2) + cX * t + dX;
+                currentY = aY * Math.Pow(t, 3) + bY * Math.Pow(t, 2) + cY * t + dY;
+                Console.WriteLine("(" + currentX + "," + currentY + ")");
+                nextPoint.X = Convert.ToInt32(currentX);
+                nextPoint.Y = Convert.ToInt32(currentY);
+                DrawLine(basePoint, nextPoint);
+                basePoint = nextPoint;
+            }
+        }
+
         /* Change drawing color functions */
-        private void BlueBtn_Click(object sender, EventArgs e)
-        {
-            color = Color.Blue;
-        }
+        private void BlueBtn_Click(object sender, EventArgs e){color = Color.Blue;}
+        private void RedBtn_Click(object sender, EventArgs e){color = Color.Red;}
+        private void GreenBtn_Click(object sender, EventArgs e){color = Color.Lime;}
+        private void YellowBtn_Click(object sender, EventArgs e){color = Color.Yellow;}
+        private void BlackBtn_Click(object sender, EventArgs e){color = Color.Black;}
 
-        private void RedBtn_Click(object sender, EventArgs e)
-        {
-            color = Color.Red;
-        }
-
-        private void GreenBtn_Click(object sender, EventArgs e)
-        {
-            color = Color.Lime;
-        }
-
-        private void YellowBtn_Click(object sender, EventArgs e)
-        {
-            color = Color.Yellow;
-        }
-
-        private void BlackBtn_Click(object sender, EventArgs e)
-        {
-            color = Color.Black;
-        }
+        /* Change what needs to be drawn */
+        private void LineBtn_Click(object sender, EventArgs e){IsDrawingLine = true; IsDrawingCircle = false; IsDrawingBazierCurve = false;}
+        private void CircleBtn_Click(object sender, EventArgs e){IsDrawingLine = false; IsDrawingCircle = true;IsDrawingBazierCurve = false;}
+        private void BazierCurveBtn_Click(object sender, EventArgs e){IsDrawingLine = false; IsDrawingCircle = false; IsDrawingBazierCurve = true;}
 
         private void canvas_Paint(object sender, PaintEventArgs e)
         {
