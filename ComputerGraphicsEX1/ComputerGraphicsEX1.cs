@@ -293,14 +293,12 @@ namespace ComputerGraphicsEX1
             LineBtn.Enabled = false;
             CircleBtn.Enabled = true;
             BezierCurveBtn.Enabled = true;
-            if(IsPoint1Available == true && IsPoint2Available == true)
+            if(IsPoint1Available == true)
             {
-                DrawLine(firstPoint, secondPoint);
                 IsPoint1Available = false;
                 IsPoint2Available = false;
                 IsPoint3Available = false;
                 IsPoint4Available = false;
-                Refresh();
             }
         }
         private void CircleBtn_Click(object sender, EventArgs e){
@@ -310,14 +308,12 @@ namespace ComputerGraphicsEX1
             LineBtn.Enabled = true;
             CircleBtn.Enabled = false;
             BezierCurveBtn.Enabled = true;
-            if (IsPoint1Available == true && IsPoint2Available == true)
+            if (IsPoint1Available == true)
             {
-                DrawCircle(firstPoint, secondPoint);
                 IsPoint1Available = false;
                 IsPoint2Available = false;
                 IsPoint3Available = false;
                 IsPoint4Available = false;
-                Refresh();
             }
         }
         private void BezierCurveBtn_Click(object sender, EventArgs e){
