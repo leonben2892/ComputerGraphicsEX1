@@ -30,6 +30,7 @@
         {
             this.canvas = new System.Windows.Forms.Panel();
             this.Navigation = new System.Windows.Forms.Panel();
+            this.NumericBoxLines = new System.Windows.Forms.NumericUpDown();
             this.BlackBtn = new System.Windows.Forms.Button();
             this.YellowBtn = new System.Windows.Forms.Button();
             this.GreenBtn = new System.Windows.Forms.Button();
@@ -42,6 +43,7 @@
             this.LineBtn = new System.Windows.Forms.Button();
             this.canvas.SuspendLayout();
             this.Navigation.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NumericBoxLines)).BeginInit();
             this.SuspendLayout();
             // 
             // canvas
@@ -59,6 +61,7 @@
             // Navigation
             // 
             this.Navigation.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.Navigation.Controls.Add(this.NumericBoxLines);
             this.Navigation.Controls.Add(this.BlackBtn);
             this.Navigation.Controls.Add(this.YellowBtn);
             this.Navigation.Controls.Add(this.GreenBtn);
@@ -74,6 +77,24 @@
             this.Navigation.Name = "Navigation";
             this.Navigation.Size = new System.Drawing.Size(609, 74);
             this.Navigation.TabIndex = 4;
+            // 
+            // NumericBoxLines
+            // 
+            this.NumericBoxLines.Location = new System.Drawing.Point(413, 5);
+            this.NumericBoxLines.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NumericBoxLines.Name = "NumericBoxLines";
+            this.NumericBoxLines.Size = new System.Drawing.Size(75, 20);
+            this.NumericBoxLines.TabIndex = 11;
+            this.NumericBoxLines.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NumericBoxLines.ValueChanged += new System.EventHandler(this.NumericBoxLines_ValueChanged);
             // 
             // BlackBtn
             // 
@@ -192,6 +213,7 @@
             this.canvas.ResumeLayout(false);
             this.Navigation.ResumeLayout(false);
             this.Navigation.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NumericBoxLines)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -210,6 +232,7 @@
         private System.Windows.Forms.Button RedBtn;
         private System.Windows.Forms.Button BlueBtn;
         private System.Windows.Forms.Button BlackBtn;
+        private System.Windows.Forms.NumericUpDown NumericBoxLines;
     }
 }
 

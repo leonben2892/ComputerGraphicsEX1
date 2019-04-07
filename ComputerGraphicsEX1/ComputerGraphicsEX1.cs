@@ -17,6 +17,9 @@ namespace ComputerGraphicsEX1
         //Drawing color
         Color color;
 
+        //Number of lines for bezier curve
+        int numOfLines;
+
         //Mouse click points
         Point firstPoint, secondPoint, thirdPoint, fourthPoint;
 
@@ -40,6 +43,9 @@ namespace ComputerGraphicsEX1
             IsDrawingLine = true;
             IsDrawingCircle = false;
             IsDrawingBazierCurve = false;
+            numOfLines = Convert.ToInt32(NumericBoxLines.Value);
+            NumericBoxLines.Value = 50;
+            LineBtn.Enabled = false;
         }
 
         private void canvas_MouseClick(object sender, MouseEventArgs e)
@@ -257,11 +263,10 @@ namespace ComputerGraphicsEX1
             int cY = -3 * one.Y + 3 * two.Y;
             int dY = one.Y;
 
-            for (double t = 0; t <= 1; t += (double)1/10)
+            for (double t = 0; t <= 1; t += (double)1/numOfLines)
             {
                 currentX = aX * Math.Pow(t, 3) + bX * Math.Pow(t, 2) + cX * t + dX;
                 currentY = aY * Math.Pow(t, 3) + bY * Math.Pow(t, 2) + cY * t + dY;
-                Console.WriteLine("(" + currentX + "," + currentY + ")");
                 nextPoint.X = Convert.ToInt32(currentX);
                 nextPoint.Y = Convert.ToInt32(currentY);
                 DrawLine(basePoint, nextPoint);
@@ -277,9 +282,34 @@ namespace ComputerGraphicsEX1
         private void BlackBtn_Click(object sender, EventArgs e){color = Color.Black;}
 
         /* Change what needs to be drawn */
-        private void LineBtn_Click(object sender, EventArgs e){IsDrawingLine = true; IsDrawingCircle = false; IsDrawingBazierCurve = false;}
-        private void CircleBtn_Click(object sender, EventArgs e){IsDrawingLine = false; IsDrawingCircle = true;IsDrawingBazierCurve = false;}
-        private void BazierCurveBtn_Click(object sender, EventArgs e){IsDrawingLine = false; IsDrawingCircle = false; IsDrawingBazierCurve = true;}
+        private void LineBtn_Click(object sender, EventArgs e)
+        {
+            IsDrawingLine = true;
+            IsDrawingCircle = false;
+            IsDrawingBazierCurve = false;
+            LineBtn.Enabled = false;
+            CircleBtn.Enabled = true;
+            BazierCurveBtn.Enabled = true;
+        }
+        private void CircleBtn_Click(object sender, EventArgs e){
+            IsDrawingLine = false;
+            IsDrawingCircle = true;
+            IsDrawingBazierCurve = false;
+            LineBtn.Enabled = true;
+            CircleBtn.Enabled = false;
+            BazierCurveBtn.Enabled = true;
+        }
+        private void BazierCurveBtn_Click(object sender, EventArgs e){
+            IsDrawingLine = false;
+            IsDrawingCircle = false;
+            IsDrawingBazierCurve = true;
+            LineBtn.Enabled = true;
+            CircleBtn.Enabled = true;
+            BazierCurveBtn.Enabled = false;
+        }
+
+        //Change number of lines for bezier curve
+        private void NumericBoxLines_ValueChanged(object sender, EventArgs e){numOfLines = Convert.ToInt32(NumericBoxLines.Value);}
 
         private void canvas_Paint(object sender, PaintEventArgs e)
         {
