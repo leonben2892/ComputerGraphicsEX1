@@ -8,7 +8,8 @@ Implementing functions to draw:
   3. Calculate a new point on the curve using the following polynomials:
      ![Polynomials](https://user-images.githubusercontent.com/12692788/55683858-220ad580-594d-11e9-9050-6723b251511f.jpg)
     
-    t values is between 0 and 1 (Taking smaller steps equals smoother bezier curve)
+    		t values is between 0 and 1 (Taking smaller steps equals smoother bezier curve)
+    
    4. Draw a line between the previous point and the new point.
    5. Increment t by the step size.
    Repeate steps ii ~ v until t >= 1
