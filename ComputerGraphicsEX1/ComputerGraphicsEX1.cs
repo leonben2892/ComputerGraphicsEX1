@@ -272,6 +272,9 @@ namespace ComputerGraphicsEX1
                 DrawLine(basePoint, nextPoint);
                 basePoint = nextPoint;
             }
+
+            //Completion of missing line
+            DrawLine(basePoint, four);
         }
 
         /* Change drawing color functions */
