@@ -4,7 +4,7 @@ Implementing functions to draw:
 - Circles (Using Bresenham algorithm)
 - Bezier Curves using the following steps:
   1. Receiving 4 points.
-  2. Create 2 seperate vectors: first vecotr is from the points X's and second vector is from the points Y's.
+  2. Create 2 seperate vectors: first vector is from the points X's and second vector is from the points Y's.
   3. Multiply the vectors separately in bezier matrix to calculate a,b,c,d equation constants.
   4. Calculate a new point on the curve using the following polynomials:
      ![Polynomials](https://user-images.githubusercontent.com/12692788/55683858-220ad580-594d-11e9-9050-6723b251511f.jpg)
