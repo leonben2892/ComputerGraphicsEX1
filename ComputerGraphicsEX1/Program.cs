@@ -4,6 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
+//Leon Benjamin - 203550884
+//Matan Nabatian - 304865215
+
 namespace ComputerGraphicsEX1
 {
     static class Program

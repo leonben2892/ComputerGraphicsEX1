@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+//Leon Benjamin - 203550884
+//Matan Nabatian - 304865215
+
 namespace ComputerGraphicsEX1
 {
     public partial class ComputerGraphicsEX1 : Form
@@ -323,6 +326,13 @@ namespace ComputerGraphicsEX1
             LineBtn.Enabled = true;
             CircleBtn.Enabled = true;
             BezierCurveBtn.Enabled = false;
+            if (IsPoint1Available == true)
+            {
+                IsPoint1Available = false;
+                IsPoint2Available = false;
+                IsPoint3Available = false;
+                IsPoint4Available = false;
+            }
         }
 
         //Change number of lines for bezier curve

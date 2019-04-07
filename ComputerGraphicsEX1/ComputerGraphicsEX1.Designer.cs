@@ -1,4 +1,7 @@
-﻿namespace ComputerGraphicsEX1
+﻿//Leon Benjamin - 203550884
+//Matan Nabatian - 304865215
+
+namespace ComputerGraphicsEX1
 {
     partial class ComputerGraphicsEX1
     {
