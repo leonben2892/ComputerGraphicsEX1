@@ -12,7 +12,8 @@ Implementing functions to draw:
     
    4. Draw a line between the previous point and the new point.
    5. Increment t by the step size.
-   Repeate steps ii ~ v until t >= 1
+   
+          Repeate steps ii ~ v until t >= 1
   
 ![SimplePaint](https://user-images.githubusercontent.com/12692788/55684043-613a2600-594f-11e9-9557-bb54ce911255.jpg)
 
