@@ -27,7 +27,7 @@ namespace ComputerGraphicsEX1
         bool IsPoint1Available, IsPoint2Available, IsPoint3Available, IsPoint4Available;
 
         // Booleans to check what we need to draw
-        bool IsDrawingLine, IsDrawingCircle, IsDrawingBazierCurve;
+        bool IsDrawingLine, IsDrawingCircle, IsDrawingBezierCurve;
 
         public ComputerGraphicsEX1()
         {
@@ -42,7 +42,7 @@ namespace ComputerGraphicsEX1
             IsPoint1Available = IsPoint2Available = IsPoint3Available = IsPoint4Available = false;
             IsDrawingLine = true;
             IsDrawingCircle = false;
-            IsDrawingBazierCurve = false;
+            IsDrawingBezierCurve = false;
             NumericBoxLines.Value = 50;
             numOfLines = Convert.ToInt32(NumericBoxLines.Value);           
             LineBtn.Enabled = false;
@@ -87,7 +87,7 @@ namespace ComputerGraphicsEX1
                 fourthPoint.Y = e.Y;
                 IsPoint4Available = true;
 
-                DrawBazierCurve(firstPoint, secondPoint, thirdPoint, fourthPoint);
+                DrawBezierCurve(firstPoint, secondPoint, thirdPoint, fourthPoint);
 
                 IsPoint1Available = false;
                 IsPoint2Available = false;
@@ -240,7 +240,7 @@ namespace ComputerGraphicsEX1
                 DrawCirclePoints(center, x, y);
         }
 
-        private void DrawBazierCurve(Point one, Point two, Point three, Point four)
+        private void DrawBezierCurve(Point one, Point two, Point three, Point four)
         {
             //Current calculated point
             double currentX, currentY;
@@ -289,10 +289,10 @@ namespace ComputerGraphicsEX1
         {
             IsDrawingLine = true;
             IsDrawingCircle = false;
-            IsDrawingBazierCurve = false;
+            IsDrawingBezierCurve = false;
             LineBtn.Enabled = false;
             CircleBtn.Enabled = true;
-            BazierCurveBtn.Enabled = true;
+            BezierCurveBtn.Enabled = true;
             if(IsPoint1Available == true && IsPoint2Available == true)
             {
                 DrawLine(firstPoint, secondPoint);
@@ -306,10 +306,10 @@ namespace ComputerGraphicsEX1
         private void CircleBtn_Click(object sender, EventArgs e){
             IsDrawingLine = false;
             IsDrawingCircle = true;
-            IsDrawingBazierCurve = false;
+            IsDrawingBezierCurve = false;
             LineBtn.Enabled = true;
             CircleBtn.Enabled = false;
-            BazierCurveBtn.Enabled = true;
+            BezierCurveBtn.Enabled = true;
             if (IsPoint1Available == true && IsPoint2Available == true)
             {
                 DrawCircle(firstPoint, secondPoint);
@@ -320,13 +320,13 @@ namespace ComputerGraphicsEX1
                 Refresh();
             }
         }
-        private void BazierCurveBtn_Click(object sender, EventArgs e){
+        private void BezierCurveBtn_Click(object sender, EventArgs e){
             IsDrawingLine = false;
             IsDrawingCircle = false;
-            IsDrawingBazierCurve = true;
+            IsDrawingBezierCurve = true;
             LineBtn.Enabled = true;
             CircleBtn.Enabled = true;
-            BazierCurveBtn.Enabled = false;
+            BezierCurveBtn.Enabled = false;
         }
 
         //Change number of lines for bezier curve

@@ -39,7 +39,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.CircleBtn = new System.Windows.Forms.Button();
-            this.BazierCurveBtn = new System.Windows.Forms.Button();
+            this.BezierCurveBtn = new System.Windows.Forms.Button();
             this.LineBtn = new System.Windows.Forms.Button();
             this.canvas.SuspendLayout();
             this.Navigation.SuspendLayout();
@@ -70,7 +70,7 @@
             this.Navigation.Controls.Add(this.label2);
             this.Navigation.Controls.Add(this.label1);
             this.Navigation.Controls.Add(this.CircleBtn);
-            this.Navigation.Controls.Add(this.BazierCurveBtn);
+            this.Navigation.Controls.Add(this.BezierCurveBtn);
             this.Navigation.Controls.Add(this.LineBtn);
             this.Navigation.Dock = System.Windows.Forms.DockStyle.Top;
             this.Navigation.Location = new System.Drawing.Point(0, 0);
@@ -181,15 +181,15 @@
             this.CircleBtn.UseVisualStyleBackColor = true;
             this.CircleBtn.Click += new System.EventHandler(this.CircleBtn_Click);
             // 
-            // BazierCurveBtn
+            // BezierCurveBtn
             // 
-            this.BazierCurveBtn.Location = new System.Drawing.Point(321, 2);
-            this.BazierCurveBtn.Name = "BazierCurveBtn";
-            this.BazierCurveBtn.Size = new System.Drawing.Size(75, 23);
-            this.BazierCurveBtn.TabIndex = 2;
-            this.BazierCurveBtn.Text = "Bazier Curve";
-            this.BazierCurveBtn.UseVisualStyleBackColor = true;
-            this.BazierCurveBtn.Click += new System.EventHandler(this.BazierCurveBtn_Click);
+            this.BezierCurveBtn.Location = new System.Drawing.Point(321, 2);
+            this.BezierCurveBtn.Name = "BezierCurveBtn";
+            this.BezierCurveBtn.Size = new System.Drawing.Size(75, 23);
+            this.BezierCurveBtn.TabIndex = 2;
+            this.BezierCurveBtn.Text = "Bezier Curve";
+            this.BezierCurveBtn.UseVisualStyleBackColor = true;
+            this.BezierCurveBtn.Click += new System.EventHandler(this.BezierCurveBtn_Click);
             // 
             // LineBtn
             // 
@@ -221,7 +221,7 @@
         #endregion
 
         private System.Windows.Forms.Panel canvas;
-        private System.Windows.Forms.Button BazierCurveBtn;
+        private System.Windows.Forms.Button BezierCurveBtn;
         private System.Windows.Forms.Button CircleBtn;
         private System.Windows.Forms.Button LineBtn;
         private System.Windows.Forms.Panel Navigation;
