@@ -43,8 +43,8 @@ namespace ComputerGraphicsEX1
             IsDrawingLine = true;
             IsDrawingCircle = false;
             IsDrawingBazierCurve = false;
-            numOfLines = Convert.ToInt32(NumericBoxLines.Value);
             NumericBoxLines.Value = 50;
+            numOfLines = Convert.ToInt32(NumericBoxLines.Value);           
             LineBtn.Enabled = false;
         }
 
@@ -290,6 +290,15 @@ namespace ComputerGraphicsEX1
             LineBtn.Enabled = false;
             CircleBtn.Enabled = true;
             BazierCurveBtn.Enabled = true;
+            if(IsPoint1Available == true && IsPoint2Available == true)
+            {
+                DrawLine(firstPoint, secondPoint);
+                IsPoint1Available = false;
+                IsPoint2Available = false;
+                IsPoint3Available = false;
+                IsPoint4Available = false;
+                Refresh();
+            }
         }
         private void CircleBtn_Click(object sender, EventArgs e){
             IsDrawingLine = false;
@@ -298,6 +307,15 @@ namespace ComputerGraphicsEX1
             LineBtn.Enabled = true;
             CircleBtn.Enabled = false;
             BazierCurveBtn.Enabled = true;
+            if (IsPoint1Available == true && IsPoint2Available == true)
+            {
+                DrawCircle(firstPoint, secondPoint);
+                IsPoint1Available = false;
+                IsPoint2Available = false;
+                IsPoint3Available = false;
+                IsPoint4Available = false;
+                Refresh();
+            }
         }
         private void BazierCurveBtn_Click(object sender, EventArgs e){
             IsDrawingLine = false;
